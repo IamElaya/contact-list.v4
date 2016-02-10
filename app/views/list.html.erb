@@ -1,0 +1,12 @@
+<article>
+<% Contact.all.each do |contact| %> 
+ <div class="container-fluid">
+   <div class="contact">
+     <h3><a><%= contact.name %></a></h3>
+     <p>
+       <%= contact.email %>
+     </p>
+</div>
+</div>
+<% end %>
+</article>

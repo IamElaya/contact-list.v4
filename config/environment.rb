@@ -8,6 +8,9 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/contrib/all' # Requires cookies, among other things
 
+gem 'sinatra-rest-json'
+gem 'json'
+
 require 'pry'
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))

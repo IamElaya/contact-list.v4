@@ -3,30 +3,29 @@ get '/' do
   erb :index
 end
 
-get '/messages' do
-  @messages = Message.all
-  erb :'messages/index'
+get '/contacts' do
+  contacts = Contact.all
+
+  # contacts = contacts.where("name ILIKE ?", params[:name]) if params[:name].present?
+
+  contacts.to_json
 end
 
-get '/messages/new' do
-  @message = Message.new
-  erb :'messages/new'
-end
+post '/contacts' do
+  firstname = params[:firstname]
+  lastname = params[:lastname]
+  email = params[:email]
+  results = {result: false}
 
-get '/messages/:id' do
-  @message = Message.find params[:id]
-  erb :'messages/show'
-end
-
-post '/messages' do
-  @message = Message.new(
-    url: params[:url],
-    content: params[:content],
-    author:   params[:author]
-    )
-  if @message.save
-    redirect '/messages'
-  else
-    erb :'messages/new'
+  contact = Contact.new(firstname: firstname, lastname: lastname, email: email)
+  if contact.save
+    results[:result] = true
+    results[:id] = contact.id
   end
+  results.to_json
+end
+
+get '/contacts/:id' do
+  contact = Contact.find(params[:id])
+  contact.to_json
 end

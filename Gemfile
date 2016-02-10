@@ -8,6 +8,9 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sinatra-activerecord'
 
+gem 'sinatra-rest-json'
+gem 'json'
+
 gem 'puma'
 gem 'tux'
 
